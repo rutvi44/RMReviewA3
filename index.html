@@ -1,0 +1,401 @@
+<!--
+Revision History: Rutvi Mistry 11/27/2023: Created
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="origin-trial" content="AjlQd1gzqSlgL0m5R6UzX/seK2l6d/hMbVbGovm8B6qc+3TnwuEGUPIH6I4mYzmWZ70latoevq/81DC5oqV6FgQAAABKeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjYzMzQyIiwiZmVhdHVyZSI6IldlYlNRTCIsImV4cGlyeSI6MTcxNjk0MDc5OX0=">
+    <title>RMReviewA1</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script src="js/RMDAL.js"></script>
+    <script src="js/RMdatabase.js"></script>
+    <script src="js/RMfacade.js"></script>
+    <script src="js/RMutil.js"></script>
+    <script src="js/RMglobal.js"></script>
+    <script src="js/RMEventClass.js"></script>
+    <link rel="stylesheet" href="css/RMmystyle.css">
+
+    <!--jquery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+<!--    &lt;!&ndash;jquery mobile&ndash;&gt;-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+<!--    &lt;!&ndash;    jquery mobile styles&ndash;&gt;-->
+    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+<!--    &lt;!&ndash;jquery validation&ndash;&gt;-->
+    <script src="js/lib/jquery.validate.js"></script>
+
+    <!-- Custom CSS styles -->
+    <style>
+        /* styling for various elements */
+        body, p, label, select, textarea, input {
+            font-family: 'Sue Ellen Francisco', cursive;
+        }
+        h1, h2, h3 {
+            font-family: 'Sue Ellen Francisco', cursive;
+        }
+        .ui-navbar a.ui-btn {
+            font-family: 'Sue Ellen Francisco', cursive;
+        }
+        .ui-listview li {
+            font-family: 'Sue Ellen Francisco', cursive;
+        }
+    </style>
+
+</head>
+<body>
+<!-- Page for the Home Section -->
+<div data-role="page" id="RMHomePage">
+    <!--    Header-->
+    <header data-role="header" data-position="fixed" data-theme="a">
+        <!-- Header with app title -->
+        <h3>RM Review A3</h3>
+        <!-- Navigation bar with icons -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <!-- Navigation links -->
+                <li>
+                    <a href="#RMHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a>
+                </li>
+                <li>
+                    <a href="#RMAddReviewPage" data-icon="plus">Add</a>
+                </li>
+                <li>
+                    <a href="#RMViewReviewPage"  data-icon="grid" >Review</a>
+                </li>
+                <li>
+                    <a href="#RMSettingsPage"  data-icon="gear" >Setting</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section data-role="content">
+        <!-- Home section content -->
+        <h2 style="text-align: center">Rutvi's Review A3 App</h2>
+        <p style="text-align: center">Welcome To Rutvi's Review A3 App. This is the last assignment of PROG:2435 and this is a mobile web app Prototype with jQuery And JQuery Mobile.</p>
+        <br>
+        <!-- Image -->
+        <img src="img/RM-image.png" alt="" style="display: block; margin: 0 auto;">
+        <br>
+        <!-- Contact information creating button using <a> tag-->
+        <p style="text-align: center">Please contact me for more detail!!</p>
+        <a href="#" data-role="button" data-iconpos="left" data-icon="plus" style="text-align: left">Call: 123-123-1234</a>
+        <a href="#" data-role="button" data-iconpos="left" data-icon="plus" style="text-align: left">Email: rmistry9104@conestogac.on.ca</a>
+        <a href="#" data-role="button" data-iconpos="left" data-icon="plus" style="text-align: left">Conestoga_Waterloo Campus</a>
+
+    </section>
+    <!-- Footer -->
+    <footer data-role="footer" data-position="fixed" data-theme="a">
+        <h3>&copy; 2023 Rutvi Mistry</h3>
+    </footer>
+</div>
+
+<!-- Page for Adding a Review -->
+<div data-role="page" id="RMAddReviewPage">
+    <!-- Header -->
+    <header data-role="header" data-position="fixed" data-theme="a">
+        <!-- Header for adding a review -->
+        <h3>Add a Review</h3>
+        <!-- Navigation bar with icons -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <!-- Navigation links -->
+                <li>
+                    <a href="#RMHomePage" data-icon="home">Home</a>
+                </li>
+                <li>
+                    <a href="#RMAddReviewPage" data-icon="plus"  class="ui-btn-active ui-state-persist">Add</a>
+                </li>
+                <li>
+                    <a href="#RMViewReviewPage"  data-icon="grid" >Review</a>
+                </li>
+                <li>
+                    <a href="#RMSettingsPage"  data-icon="gear" >Setting</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- section content -->
+    <section data-role="content" class="border">
+        <!-- Form for adding a review -->
+        <form action="" id="frmAdd" name="AddForm" method="post">
+
+        <label for="txtRestaurantName">Restaurant Name:</label>
+            <input type="text" id="txtRestaurantName" name="txtRestaurantName" data-clear-btn="true">
+
+            <label for="txtBuisnessId">Buisness id:</label>
+            <input type="text" id="txtBuisnessId" name="txtBuisnessId" data-clear-btn="true">
+
+            <label for="state">Choose State:</label>
+            <select name="state" id="state" data-native-menu="true" data-iconpos="right">
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="YT">Yukon</option>
+            </select>
+
+            <label for="txtEmail">Reviewer Email:</label>
+            <input type="email" id="txtEmail" name="txtEmail" data-clear-btn="true">
+
+            <label for="txtComments">Reviewer Comments:</label>
+            <textarea id="txtComments" name="txtComments"></textarea>
+
+            <div class="checkBox1">
+                <!-- Checkbox to add ratings -->
+                <label for="checkRatings1">Do you want to add your ratings?</label>
+                <input type="checkbox" id="checkRatings1" name="checkRatings1">
+
+                <!-- Text Boxes for rating which is initially hidden -->
+                <div id="ratingFields1" style="display: none;">
+                    <label for="txtFoodQuality1">Food Quality (0-5):</label>
+                    <input type="number" id="txtFoodQuality1" name="txtFoodQuality1" value="0" data-clear-btn="true">
+
+                    <label for="txtService1">Service (0-5):</label>
+                    <input type="number" id="txtService1" name="txtService1" value="0" data-clear-btn="true">
+
+                    <label for="txtValue1">Value (0-5):</label>
+                    <input type="number" id="txtValue1" name="txtValue1" value="0" data-clear-btn="true">
+
+                    <!-- Range for Overall Ratings -->
+                    <label for="rangeratings1">Overall Ratings (1-100) :</label>
+                    <input type="text" data-type="range" id="rangeratings1" name="rangeratings1" min="1" max="100" value="0" data-highlight="true">
+                </div>
+                <br>
+            </div>
+
+            <button type="button" id="btnSave" name="btnSave" data-role="Button" class="ui-btn-active">Save</button>
+        </form>
+    </section>
+    <!-- Footer-->
+    <footer data-role="footer" data-position="fixed" data-theme="a">
+        <h3>&copy; 2023 Rutvi Mistry</h3>
+    </footer>
+</div>
+
+<!-- Page for Viewing Reviews -->
+<div data-role="page" id="RMViewReviewPage">
+    <!-- Header -->
+    <header data-role="header" data-position="fixed" data-theme="a">
+        <!-- Header for viewing reviews -->
+        <h3>List Of Reviews</h3>
+        <!-- Navigation bar with icons -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <!-- Navigation links -->
+                <li>
+                    <a href="#RMHomePage" data-icon="home">Home</a>
+                </li>
+                <li>
+                    <a href="#RMAddReviewPage" data-icon="plus">Add</a>
+                </li>
+                <li>
+                    <a href="#RMViewReviewPage"  data-icon="grid" class="ui-btn-active ui-state-persist">Review</a>
+                </li>
+                <li>
+                    <a href="#RMSettingsPage"  data-icon="gear" >Setting</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- section content -->
+    <section data-role="content" class="border">
+        <!-- List of reviews -->
+        <ul id="lvAll" data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
+            <li>
+                <a href="#RMModifyReviewPage">
+                    <!-- Review details -->
+                <h1>Restaurant Name: RJ Desserts</h1>
+                <p>Business Id: AA001</p>
+                <p>State: Ontario</p>
+                <p>Review Email: RJDesserts@conestogac.on.ca</p>
+                <p>Comments: Tempting CheeseCake!!</p>
+                <p>Overall Rating: 94%</p>
+                </a>
+            <a href="#RMModifyReviewPage"></a>
+            </li>
+            <li>
+                <a href="#RMModifyReviewPage">
+                    <!-- Review details -->
+                    <h1>Restaurant Name: Tailor's Cafe</h1>
+                    <p>Business Id: AB002</p>
+                    <p>State: Nova Scotia</p>
+                    <p>Review Email: Tcafe@conestogac.on.ca</p>
+                    <p>Comments: Best Coffee and Bagel ever</p>
+                    <p>Overall Rating: 98%</p>
+                </a>
+                <a href="#RMModifyReviewPage"></a>
+            </li>
+            <li data-icon="gear">
+                <a href="#RMModifyReviewPage">
+                    <!-- Review details -->
+                    <h1>Restaurant Name: Mistry's Indian snacks</h1>
+                    <p>Business Id: AC003</p>
+                    <p>State: Alberta</p>
+                    <p>Review Email: MIndianSnacks@conestogac.on.ca</p>
+                    <p>Comments: Good Snacks</p>
+                    <p>Overall Rating: 88%</p>
+                </a>
+                <a href="#RMModifyReviewPage"></a>
+            </li>
+        </ul>
+    </section>
+    <!-- Footer-->
+    <footer data-role="footer" data-position="fixed" data-theme="a">
+        <h3>&copy; 2023 Rutvi Mistry</h3>
+    </footer>
+</div>
+<!-- Page for Modifying Reviews -->
+<div data-role="page" id="RMModifyReviewPage">
+    <!-- Header -->
+    <header data-role="header" data-position="fixed" data-theme="a">
+        <!-- Header for modifying reviews -->
+        <h3>Modify Reviews</h3>
+        <!-- Navigation bar with icons -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <!-- Navigation links -->
+                <li>
+                    <a href="#RMHomePage" data-icon="home">Home</a>
+                </li>
+                <li>
+                    <a href="#RMAddReviewPage" data-icon="plus">Add</a>
+                </li>
+                <li>
+                    <a href="#RMViewReviewPage" data-icon="grid" class="ui-btn-active ui-state-persist">Review</a>
+                </li>
+                <li>
+                    <a href="#RMSettingsPage" data-icon="gear">Setting</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- section content -->
+    <section data-role="content" class="border">
+        <!-- Form for modifying a review -->
+        <form action="" id="frmModify" name="ModifyForm" method="post">
+
+
+        <label for="txtRestaurant">Restaurant Name:</label>
+            <input type="text" id="txtRestaurant" name="txtRestaurant" data-clear-btn="true" placeholder="RJ Desserts">
+
+            <label for="txtBuisId">Buisness id:</label>
+            <input type="text" id="txtBuisId" name="txtBuisId" data-clear-btn="true" placeholder="AA001">
+
+            <label for="selectstate">Choose State:</label>
+            <select name="selectstate" id="selectstate" data-native-menu="true" data-iconpos="right">
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="ON" selected>Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="YT">Yukon</option>
+            </select>
+
+            <label for="txtemail2">Reviewer Email:</label>
+            <input type="email" id="txtemail2" name="txtemail2" data-clear-btn="true" placeholder="RJDesserts@conetogac.on.ca">
+
+
+            <label for="Comments">Reviewer Comments:</label>
+            <textarea id="Comments" name="Comments" placeholder="Tempting CheeseCake!!"></textarea>
+
+            <div class="checkBox2">
+                <!-- Checkbox to add ratings -->
+                <label for="checkRatings2">Do you want to add your ratings?</label>
+                <input type="checkbox" id="checkRatings2" name="checkRatings2">
+
+                <!-- Text Boxes for rating which is initially hidden -->
+                <div id="ratingFields2" style="display: none;">
+                    <label for="txtFoodQuality2">Food Quality (0-5):</label>
+                    <input type="number" id="txtFoodQuality2" name="txtFoodQuality2" value="0" data-clear-btn="true">
+
+                    <label for="txtService2">Service (0-5):</label>
+                    <input type="number" id="txtService2" name="txtService2" value="0" data-clear-btn="true">
+
+                    <label for="txtValue2">Value (0-5):</label>
+                    <input type="number" id="txtValue2" name="txtValue2" value="0" data-clear-btn="true">
+
+                    <!-- Range for Overall Ratings -->
+                    <label for="rangeratings2">Overall Ratings (1-100):</label>
+                    <input type="text" data-type="range" id="rangeratings2" name="rangeratings2" min="1" max="100" value="0" data-highlight="true">
+                </div>
+                <br>
+            </div>
+
+            <!-- Creating buutons using <Button> tag and made it as controlGroup-->
+            <div data-role="controlgroup" data-type="horizontal">
+                <button type="button" id="btnCancel" name="btnCancel" data-role="button" data-theme="a">Cancel</button>
+                <button type="button" id="btnDelete" name="btnDelete" data-role="button" data-theme="b">Delete</button>
+                <button type="button" id="btnUpdate" name="btnUpdate" data-role="button" class="ui-btn-active" >Update</button>
+            </div>
+        </form>
+    </section>
+    <!-- Footer-->
+    <footer data-role="footer" data-position="fixed" data-theme="a">
+        <h3>&copy; 2023 Rutvi Mistry</h3>
+    </footer>
+</div>
+<!-- Page for Settings -->
+<div data-role="page" id="RMSettingsPage">
+    <!-- Header -->
+    <header data-role="header" data-position="fixed" data-theme="a">
+        <!-- Header for settings -->
+        <h3>Settings</h3>
+        <!-- Navigation bar with icons -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <!-- Navigation links -->
+                <li>
+                    <a href="#RMHomePage" data-icon="home">Home</a>
+                </li>
+                <li>
+                    <a href="#RMAddReviewPage" data-icon="plus">Add</a>
+                </li>
+                <li>
+                    <a href="#RMViewReviewPage" data-icon="grid">Review</a>
+                </li>
+                <li>
+                    <a href="#RMSettingsPage" data-icon="gear" class="ui-btn-active ui-state-persist">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- section content -->
+    <section data-role="content" class="border">
+        <!-- Form for app settings -->
+        <form action="" id="frmSettings" name="SettingsForm" method="post">
+
+            <label for="txtDefaultReviewerEmail">Default Reviewer Email:</label>
+            <input type="email" id="txtDefaultReviewerEmail" name="txtDefaultReviewerEmail" data-clear-btn="true">
+
+            <button type="button" id="btnSaveSettings" name="btnSaveSettings" data-role="button" class="ui-btn-active">Save Defaults</button>
+            <button type="button" id="btnClear" name="btnClear" data-role="button" data-theme="a">Clear Database</button>
+        </form>
+    </section>
+    <!-- Footer-->
+    <footer data-role="footer" data-position="fixed" data-theme="a">
+        <h3>&copy; 2023 Rutvi Mistry</h3>
+    </footer>
+</div>
+
+</body>
+</html>
